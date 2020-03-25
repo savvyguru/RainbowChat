@@ -1,37 +1,39 @@
-class Queue {
-    constructor() {
-        this.queue = [];
+function FuncQueue(){
+    class Queue {
+        constructor() {
+            this.queue = [];
+        }
+    
+        enqueue(item) { //add to back of queue
+            return this.queue.unshift(item);
+        }
+    
+        dequeue() { //remove from front of queue
+            return this.queue.pop();
+        }
+    
+        peek() { //returns item at front of queue
+            return this.queue[this.length - 1];
+        }
+    
+        get length() {
+            return this.queue.length;
+        }
+    
+        isEmpty() { //returns true if empty
+            return this.queue.length === 0;
+        }
     }
-
-    enqueue(item) { //add to back of queue
-        return this.queue.unshift(item);
-    }
-
-    dequeue() { //remove from front of queue
-        return this.queue.pop();
-    }
-
-    peek() { //returns item at front of queue
-        return this.queue[this.length - 1];
-    }
-
-    get length() {
-        return this.queue.length;
-    }
-
-    isEmpty() { //returns true if empty
-        return this.queue.length === 0;
+    
+    const q = [];
+    const allAgents = listAllAgents();
+    
+    for (i = 0; i < allAgents.length; i++){
+        q[i] = new Queue();
     }
 }
 
-const q = [];
-const allAgents = listAllAgents();
-
-for (i = 0; i < allAgents.length; i++){
-    q[i] = new Queue();
-}
-
-function putInQueue(customerId, customerTag){ //put in shortest queue that matches the tag
+FuncQueue.putInQueue = function(customerId, customerTag){ //put in shortest queue that matches the tag
     var agents = findAgent(customerTag);
     var queueIndex = [];
     for (i = 0; i < agents.length; i++){
@@ -55,4 +57,8 @@ function routeQueue(agent){
 
     //connect customer to agent
 }
+
+module.exports = FuncQueue;
+
+
 
