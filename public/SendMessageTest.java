@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SendMessageTest {
 
     static String myUserName = "tian_wang@mymail.sutd.edu.sg";
-    static String myPassword = "Wt485997!";
+    static String myPassword = "password";
 
     public static void main(String[] args) throws InterruptedException {
 
