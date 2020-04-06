@@ -1,3 +1,5 @@
+const mongo = require("./dbapp");
+
 function FuncQueue(){
     class Queue {
         constructor() {
@@ -34,7 +36,9 @@ function FuncQueue(){
 }
 
 FuncQueue.putInQueue = function(customerId, customerTag){ //put in shortest queue that matches the tag
-    var agents = findAgent(customerTag);
+    var agents = mongo.findDocuments(mongo.db, customerTag, function(){
+        mongo.client.close();
+    });
     var queueIndex = [];
     for (i = 0; i < agents.length; i++){
         if (allAgents.includes(agents[i])){
@@ -58,6 +62,15 @@ function routeQueue(agent){
     //connect customer to agent
 }
 
+async function start(){
+    await mongo.init();
+    //FuncQueue.putInQueue("skillA", "1");
+    console.log("running");
+    //console.log(FuncQueue.q);
+    mongo.client.close();
+}
+
+start();
 module.exports = FuncQueue;
 
 
