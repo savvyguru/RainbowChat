@@ -25,6 +25,7 @@ class Queue {
 }
 const queue = [];
 const allAgents = ["A", "B", "C"];
+const avail = [true, true, true];
 
 for (i = 0; i < allAgents.length; i++){
     queue[i] = new Queue();
@@ -68,9 +69,33 @@ NoDBQueue.putInQueue = function(customerId, customerTag){ //put in shortest queu
 
 NoDBQueue.getCustomer = function(agent){
     var index = allAgents.indexOf(agent);
+    if (queue[index].isEmpty()){
+        return "Empty";
+    }
     var customer = queue[index].dequeue();
 
     return customer;
+}
+
+NoDBQueue.emptyQueue = function(){
+    for (i = 0; i < allAgents.length; i++){
+        queue[i] = new Queue();
+    }
+}
+
+NoDBQueue.checkAvail = function(agent){
+    var index = allAgents.indexOf(agent);
+    return avail[index];
+}
+
+NoDBQueue.setBusy = function(agent){
+    var index = allAgents.indexOf(agent);
+    avail[index] = false;
+}
+
+NoDBQueue.setAvail = function(agent){
+    var index = allAgents.indexOf(agent);
+    avail[index] = true;
 }
 
 module.exports = NoDBQueue;
