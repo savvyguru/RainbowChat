@@ -17,7 +17,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginTest {
+public class ChatRetailTest {
 
     static String myUserName = "wt@gmail.com";
     static String myPassword = "Sutd12345!";
@@ -57,8 +57,25 @@ public class LoginTest {
 
         try {
             WebDriverWait wait = new WebDriverWait(driver, 10);
-            // wait only until the project front page loads
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("typeBar")));
+            // wait only until the project front page loads  dropbtn
+            wait.until(ExpectedConditions.elementToBeClickable(By.className("dropbtn")));
+            WebElement dropbtn = driver.findElement(By.className("dropbtn"));
+            Thread.sleep(10000);
+            dropbtn.click();
+            Thread.sleep(3000);
+            WebElement finance= driver.findElement(By.linkText("Retail"));
+            finance.click();
+
+            // click project link
+            Thread.sleep(4000);
+            WebElement typebar = driver.findElement(By.id("typeBar"));
+            typebar.sendKeys("Hiiiiiii");
+            Thread.sleep(2000);
+            driver.findElement(By.cssSelector("i[class='fas fa-location-arrow']")).click();
+            Thread.sleep(2000);
+            typebar.sendKeys("i'm requesting Retail-related service");
+            Thread.sleep(2000);
+            driver.findElement(By.cssSelector("i[class='fas fa-location-arrow']")).click();
 
         } catch (Exception NoSuchElementException) {
             System.out.println("login/password name invalid");
