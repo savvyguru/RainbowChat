@@ -288,6 +288,7 @@ function chatroom(username, password) {
 /*
     UI Interactions
 */
+
 $(document).ready(function () {
     $('#loginbutton').on('click', function () {
         var username = $('#username').val();
